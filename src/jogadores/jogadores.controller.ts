@@ -12,7 +12,7 @@ import {
 import { CriarJogadorDTO } from './dtos/criar-Jogador.dto';
 import { JogadoresService } from './jogadores.service';
 import { Jogador } from './interfaces/jogador.interface';
-import { JogadoresPipe } from './pipes/jogadores-pipe';
+import { ValidacaoParametrosPipe } from '../common/pipes/validacao-parametros.pipe';
 import { AtualizarJogadorDTO } from './dtos/atualizar-Jogador.dto';
 
 @Controller('api/v1/jogadores')
@@ -41,14 +41,14 @@ export class JogadoresController {
 
   @Get(':_id')
   async consultarJogadorPeloId(
-    @Param('_id', JogadoresPipe) _id: string,
+    @Param('_id', ValidacaoParametrosPipe) _id: string,
   ): Promise<Jogador> {
     return this.jogadoresService.consultarJogadoresPeloId(_id);
   }
 
   @Delete(':_id')
   async deletarJogador(
-    @Param('_id', JogadoresPipe) _id: string,
+    @Param('_id', ValidacaoParametrosPipe) _id: string,
   ): Promise<void> {
     console.log(_id);
     return this.jogadoresService.deletarJogador(_id);
