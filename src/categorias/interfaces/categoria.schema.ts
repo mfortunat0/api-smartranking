@@ -1,25 +1,17 @@
-import * as mongoose from 'mongoose';
+import * as mongoose from "mongoose";
 
-export const CategoriaSchema = new mongoose.Schema(
-  {
-    categoria: { type: String, unique: true },
-    descricao: String,
+export const CategoriaSchema = new mongoose.Schema({
+    categoria: {type: String, unique: true},
+    descricao: {type: String},
     eventos: [
-      {
-        nome: String,
-        operacao: String,
-        valor: Number,
-      },
+        {
+            nome: { type: String },
+            operacao: { type: String },
+            valor: { type: Number }
+        }
     ],
-    jogadores: [
-      {
+    jogadores: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Jogador',
-      },
-    ],
-  },
-  {
-    timestamps: true,
-    collection: 'categorias',
-  },
-);
+        ref: "Jogador"
+    }]
+}, {timestamps: true, collection: 'categorias'});
